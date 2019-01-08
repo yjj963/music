@@ -1,14 +1,52 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
 .wrapper{
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
+}
+header{
     width: 100%;
+    padding: 1%;
+    background-color: #AA3722;
+    color: white;
+    border-top-left-radius: 3%;
+    border-top-right-radius: 3%;
 }
 .wrapper .list{
-    width: 30%;
+    width: 20%;
+    height: 100%;
     position: relative;
 }
+.list ul li{
+    background-color: #ddd;
+    text-align: center;
+    padding: 1%;
+}
+.list ul li.active{
+    background-color:#ccc; 
+    border-left: 3px solid #AA3722;
+}
 .wrapper .message{
+    width: 80%;
+    height: 100%;
+}
+.message .uploadArea{
     width: 60%;
+    height: 52%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5% auto;
+    border: 1px dashed #ddd;
+    text-align: center;
+}
+.message .uploadArea .draggable,
+.draggable .clickable{
+    width: 100%;
 }
 .create{
     position: absolute;
