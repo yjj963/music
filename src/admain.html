@@ -12,6 +12,7 @@
     <header>网易云音乐</header>
     <div class="wrapper">
         <div id="list" class="list">
+            <div class="create">新建</div>
             <ul>
                 <li>
                     <div class="pic"></div>
@@ -20,20 +21,28 @@
                         <p><span class="icon"></span>毛不易</p>
                     </div>
                 </li>
-                <li>像我这样的人--毛不易</li>
+                <li>
+                    <div class="pic"></div>
+                    <div class="text">
+                        <h1>像我这样的人</h1>
+                        <p><span class="icon"></span>毛不易</p>
+                    </div>
+                </li>
+                <li>
+                    
+                </li>
             </ul>
-            <div class="create">c</div>
+            <div id="uploadArea" class="uploadArea">
+                    <div id="uploadContainer" class="draggable">
+                      <div id="uploadButton" class="clickable">
+                        <p>点击或拖曳文件</p>
+                        <p>文件大小不能超过 40MB </p>
+                      </div>
+                    </div>
+            </div>
         </div>
-        <div id="message" class="message">
-                <div id="uploadArea" class="uploadArea">
-                        <div id="uploadContainer" class="draggable">
-                          <div id="uploadButton" class="clickable">
-                            <p>点击或拖曳文件</p>
-                            <p>文件大小不能超过 40MB </p>
-                          </div>
-                        </div>
-                </div>
-                <div id="uploadStatus"></div>
+        <div id="form" class="message">
+            <div id="uploadStatus"></div>
         </div>
     </div>
     <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>

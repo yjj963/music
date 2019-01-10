@@ -22,12 +22,17 @@ header{
     position: relative;
 }
 .list ul li{
-    background-color: #ddd;
     text-align: center;
     padding: 1%;
 }
+.list ul li:nth-of-type(odd){
+    background-color: #f7f7f7;
+}
+.list ul li:nth-of-type(even){
+    background-color: #efefef;
+}
 .list ul li.active{
-    background-color:#ccc; 
+    background-color:#c8c8c8; 
     border-left: 3px solid #AA3722;
 }
 .wrapper .message{
@@ -48,7 +53,7 @@ header{
 .draggable .clickable{
     width: 100%;
 }
-.create{
+.uploadArea{
     position: absolute;
     top: 100%;
     left: 0;
