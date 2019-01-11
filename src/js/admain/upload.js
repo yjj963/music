@@ -48,7 +48,10 @@
                          var domain = up.getOption('domain');
                          var res = JSON.parse(info.response);
                          var sourceLink = 'http://'+domain+'/' + encodeURIComponent(res.key); //获取上传成功后的文件的Url
-                         uploadStatus.textContent = res.key
+                         window.eventHub.emit('upload',{
+                             'link':sourceLink,
+                             'name':res.key
+                         })
                     },
                     'Error': function(up, err, errTip) {
                         //上传出错时,处理相关的事情
@@ -60,7 +63,7 @@
             });
         },
         bindEventsHub(){
-            window.eventhub.emit()
+            
         }
     }
     controller.init(view,model)

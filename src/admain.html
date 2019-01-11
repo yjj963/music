@@ -43,33 +43,20 @@
         </div>
         <div id="form" class="message">
             <div id="uploadStatus"></div>
+            
         </div>
     </div>
     <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
     <script>
-        var APP_ID = 'i0Vn15kT8NfkdwFbLsr2RVXc-gzGzoHsz';
-        var APP_KEY = '521DF71nIUPnSCJu6jYghfgB';
-
-        AV.init({
-            appId: APP_ID,
-            appKey: APP_KEY
-        });
-//         var TestObject = AV.Object.extend('Playlist');
-// var testObject = new TestObject();
-// testObject.save({
-//   name: 'test',
-//   cover:'test',
-//   createId:'test',
-//   description:'test',
-//   songs:['1','2']
-// }).then(function(object) {
-//   alert('LeanCloud Rocks!');
-// })
+        
     </script>
     <script src="../vendors/moxie.min.js"></script>
+    <script src="../vendors/event-hub.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/plupload/js/plupload.min.js"></script>
     <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
     <script src="./js/admain/upload.js">
     </script>
+    <script src="./js/admain/songform.js"></script>
 </body>
 </html>

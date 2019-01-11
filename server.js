@@ -9,7 +9,6 @@ if(!port){
   console.log('请指定端口号好不啦？\nnode server.js 8888 这样不会吗？')
   process.exit(1)
 }
-
 var server = http.createServer(function(request, response){
   var parsedUrl = url.parse(request.url, true)
   var pathWithQuery = request.url 
