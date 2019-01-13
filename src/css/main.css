@@ -4,7 +4,6 @@ html,body{
 }
 .wrapper{
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -20,6 +19,12 @@ header{
     width: 20%;
     height: 100%;
     position: relative;
+}
+.list .create{
+    text-align: center;
+}
+.list .create.active{
+    background-color:#c8c8c8;
 }
 .list ul li{
     text-align: center;
@@ -38,6 +43,8 @@ header{
 .wrapper .message{
     width: 80%;
     height: 100%;
+    padding: 50px;
+    background-color:#c8c8c8;
 }
 .message .uploadArea{
     width: 60%;
@@ -57,4 +64,6 @@ header{
     position: absolute;
     top: 100%;
     left: 0;
+    text-align: center;
+    width: 100%;
 }
