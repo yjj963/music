@@ -21,20 +21,34 @@
             this.$el=$(this.el)
         },
         render(data){
-            this.$el.html(this.template)
+            this.$el.html('')
+            //let songs=data.songs
+            let {songs}=data
+            console.log(songs)
+            let liList=songs.map((song)=>{
+                return $('<li></li>').text(song.name)
+            })
+            console.log(liList)
+            liList.map((li)=>{
+                this.$el.append(li)
+            })
+            //this.$el.html(this.template)
         }
     }
     let model={
-        
+        data:{
+            songs:[]
+        },
     }
     let controller={
         init(){
             this.view=view
             this.model=model
             this.view.init()
-            this.view.render(this.model.data)
+            //this.view.render(this.model.data)
             window.eventHub.on('create',(data)=>{
-                
+                this.model.data.songs.push(data)
+                this.view.render(this.model.data)
             })
         }
     }

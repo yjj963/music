@@ -44,7 +44,6 @@
             song.set('name',data.name)
             song.set('singer',data.singer)
             song.set('link',data.link)
-            console.log(song)
             return song.save().then((newSong)=> {
                 // let id=newSong.id
                 // let attributes=newSong.attributes
@@ -52,15 +51,15 @@
                 // this.data.id=id
                 // this.data.name=attributes.name
                 // ..
-                Object.assign(this.data,{
+                /*Object.assign(this.data,{
                     //id:id,
                     id,
                     ...attributes
                     // name:attributes.name,
                     // singer:attributes.singer,
                     // link:attributes.link
-                })
-                console.log(this.data)
+                })*/
+                this.data={id,...attributes}
             },(error) =>{
                 console.error(error);
             });
@@ -72,6 +71,7 @@
             this.model=model
             this.view.init()
             window.eventHub.on('upload',(data)=>{
+                this.model.data=data
                 this.view.render(data)
             })
             this.bindEvents()
