@@ -39,12 +39,24 @@
         data:{
             songs:[]
         },
+        find(){
+            var query = new AV.Query('Song');
+            return query.find().then((songs) =>{
+                this.data.songs=songs.map((song)=>{
+                    let id=song.id
+                    return {id,...song.attributes}
+                })
+            })
+        }
     }
     let controller={
         init(){
             this.view=view
             this.model=model
             this.view.init()
+            this.model.find().then(()=>{
+                this.view.render(this.model.data)
+            })
             //this.view.render(this.model.data)
             window.eventHub.on('create',(data)=>{
                 this.model.data.songs.push(data)

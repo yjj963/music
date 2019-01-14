@@ -51,15 +51,15 @@
                 // this.data.id=id
                 // this.data.name=attributes.name
                 // ..
-                /*Object.assign(this.data,{
+                Object.assign(this.data,{
                     //id:id,
                     id,
                     ...attributes
                     // name:attributes.name,
                     // singer:attributes.singer,
                     // link:attributes.link
-                })*/
-                this.data={id,...attributes}
+                })
+                //this.data={id,...attributes}
             },(error) =>{
                 console.error(error);
             });
@@ -88,7 +88,10 @@
                 this.model.create(data)
                     .then(()=>{
                         this.view.reset()
-                        window.eventHub.emit('create',this.model.data)
+                        //深拷贝
+                        let string=JSON.stringify(this.model.data)
+                        let object=JSON.parse(string)
+                        window.eventHub.emit('create',object)
                     })
             })
         }
