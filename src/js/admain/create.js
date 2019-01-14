@@ -15,6 +15,9 @@
             window.eventHub.on('create',()=>{
                 this.deactive()
             })
+            window.eventHub.on('select',()=>{
+                //this.deactive()
+            })
         },
         active(){
             this.view.$el.addClass('active')
