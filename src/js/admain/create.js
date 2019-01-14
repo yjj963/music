@@ -5,7 +5,9 @@
             this.$el=$(this.el)
         }
     }
-    let model={}
+    let model={
+        data:{}
+    }
     let controller={
         init(){
             this.view=view
@@ -23,12 +25,13 @@
         },
         bindEvents(){
             this.view.$el.on('click',()=>{
+                this.active()
                 window.eventHub.emit('new')
             })
         },
         bindEventHub(){
-            window.eventHub.on('create',()=>{
-                this.deactive()
+            window.eventHub.on('upload',(data)=>{
+                this.model.data=data
             })
             window.eventHub.on('select',()=>{
                 this.deactive()

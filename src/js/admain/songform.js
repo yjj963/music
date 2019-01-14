@@ -22,6 +22,7 @@
                 <button type='submit'>保存</button>
             </div>
         </form>
+        <div id="uploadStatus"></div>
         `,
         render(data){
             let placeholder=['name','singer','link']
@@ -41,7 +42,7 @@
         }
     }
     let model={
-        data:{name:'',singer:'',link:'',id:''},
+        data:{},
         create(data){
             var Song=AV.Object.extend('Song')
             var song=new Song()
@@ -78,7 +79,13 @@
             window.eventHub.on('select',(songData)=>{
                 this.view.render(songData)
             })
-            window.eventHub.on('new',()=>{
+            window.eventHub.on('new',(data)=>{
+                if(this.model.data.id){
+                    console.log(this.model.data.id)
+                    this.model.data={name:'',singer:'',link:'',id:''}
+                }else{
+                    Object.assign(this.model.data,data)
+                }
                 this.view.render(this.model.data)
             })
         },
@@ -91,10 +98,14 @@
                 need.map((string)=>{
                     data[string]=this.view.$el.find(`input[name="${string}"]`).val()
                 })
+                console.log('收集数据')
+                console.log(data)
                 this.model.create(data)
                     .then(()=>{
                         this.view.reset()
                         //深拷贝
+                        console.log('保存到数据库和model上的')
+                        console.log(this.model.data)
                         let string=JSON.stringify(this.model.data)
                         let object=JSON.parse(string)
                         window.eventHub.emit('create',object)

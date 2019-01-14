@@ -10,7 +10,6 @@ html,body{
 }
 header{
     width: 100%;
-    height: 14%;
     padding: 14px;
     background-color: #AA3722;
     color: white;
@@ -27,6 +26,10 @@ header{
 }
 .list .create.active{
     background-color:#c8c8c8;
+}
+.list ul{
+    overflow: auto;
+    height: 75%;
 }
 .list ul li{
     text-align: center;

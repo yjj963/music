@@ -62,12 +62,16 @@
             window.eventHub.on('create',(data)=>{
                 this.model.data.songs.push(data)
                 this.view.render(this.model.data)
-                this.view.activeItem($(`li[data-song-id=${data.id}]`)[0])
+            })
+            window.eventHub.on('new',()=>{
+                this.view.$el.find('li').removeClass('active')
             })
         },
         getAllSongs(){
             return this.model.find().then(()=>{
                 this.view.render(this.model.data)
+                console.log('要展示的所有的')
+                console.log(this.model.data)
             })
         },
         bindEvents(){
@@ -75,7 +79,7 @@
                 this.view.activeItem(e.currentTarget)
                 let songId=e.currentTarget.getAttribute('data-song-id')
                 let songs=this.model.data.songs
-                for(var i=0;i<songs.length-1;i++){
+                for(var i=0;i<songs.length;i++){
                     if(songs[i].id===songId){
                         var songData=songs[i]
                     }
