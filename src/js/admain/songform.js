@@ -30,6 +30,11 @@
                 html=html.replace(`--${string}--`,data[string]||'')
             })
             $(this.el).html(html)
+            if(data.id){
+                this.$el.prepend($('<h1>编辑歌曲</h1>'))
+            }else{
+                this.$el.prepend($('<h1>新建歌曲</h1>'))
+            }
         },
         reset(){
             this.render({})
@@ -72,6 +77,9 @@
             })
             window.eventHub.on('select',(songData)=>{
                 this.view.render(songData)
+            })
+            window.eventHub.on('new',()=>{
+                this.view.render(this.model.data)
             })
         },
         bindEvents(){

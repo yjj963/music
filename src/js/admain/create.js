@@ -13,12 +13,18 @@
             this.view.init()
             this.active()
             this.bindEventHub()
+            this.bindEvents()
         },
         active(){
             this.view.$el.addClass('active')
         },
         deactive(){
             this.view.$el.removeClass('active')
+        },
+        bindEvents(){
+            this.view.$el.on('click',()=>{
+                window.eventHub.emit('new')
+            })
         },
         bindEventHub(){
             window.eventHub.on('create',()=>{
