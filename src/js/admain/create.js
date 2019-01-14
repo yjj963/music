@@ -12,18 +12,21 @@
             this.model=model
             this.view.init()
             this.active()
-            window.eventHub.on('create',()=>{
-                this.deactive()
-            })
-            window.eventHub.on('select',()=>{
-                //this.deactive()
-            })
+            this.bindEventHub()
         },
         active(){
             this.view.$el.addClass('active')
         },
         deactive(){
             this.view.$el.removeClass('active')
+        },
+        bindEventHub(){
+            window.eventHub.on('create',()=>{
+                this.deactive()
+            })
+            window.eventHub.on('select',()=>{
+                this.deactive()
+            })
         }
     }
     controller.init(view,model)
