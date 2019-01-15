@@ -3,8 +3,9 @@
         el:"#message"
     }
     let model={
-        fetch(){},
-        save(){}
+        data:{
+            status:'open'
+        }
     }
     let controller={
         init(view,model){
@@ -29,22 +30,20 @@
                             // 文件添加进队列后,处理相关的事情
                         });
                     },
-                    'BeforeUpload': function(up, file) {
+                    'BeforeUpload': (up, file)=> {
                         // 每个文件上传前,处理相关的事情
+                        if(this.model.data.status==='closed'){console.log(window.x)
+                            return false;
+                        }else{
+                            this.model.data.status='closed'
+                        }
                     },
                     'UploadProgress': function(up, file) {
                         // 每个文件上传时,处理相关的事情
                         window.eventHub.emit('beforeload')
                     },
-                    'FileUploaded': function(up, file, info) {
-                        // 每个文件上传成功后,处理相关的事情
-                        // 其中 info.response 是文件上传成功后，服务端返回的json，形式如
-                        // {
-                        //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-                        //    "key": "gogopher.jpg"
-                        //  }
-                        // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
-       
+                    'FileUploaded': (up, file, info) =>{
+                        this.model.data.status='open'
                          var domain = up.getOption('domain');
                          var res = JSON.parse(info.response);
                          var sourceLink = 'http://'+domain+'/' + encodeURIComponent(res.key); //获取上传成功后的文件的Url
