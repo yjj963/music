@@ -1,37 +1,24 @@
 {
     let view={
         el:".list>ul",
-        template:`
-            <li>
-                <div class="pic"></div>
-                <div class="text">
-                    <h1>从无到有</h1>
-                    <p><span class="icon"></span>毛不易</p>
-                </div>
-            </li>
-            <li>
-                <div class="pic"></div>
-                <div class="text">
-                    <h1>像我这样的人</h1>
-                    <p><span class="icon"></span>毛不易</p>
-                </div>
-            </li>
-        `,
+        template:``,
         init(){
             this.$el=$(this.el)
         },
         render(data){
             this.$el.html('')
-            //let songs=data.songs
-            let {songs}=data
+            let {songs,selectedSongId}=data
             let liList=songs.map((song)=>{
-                return $('<li></li>').text(song.name)
+                let $li=$('<li></li>').text(song.name)
                     .attr('data-song-id',song.id)
+                    if(song.id===selectedSongId){
+                        $li.addClass('active')
+                    }
+                return $li
             })
             liList.map((li)=>{
                 this.$el.append(li)
             })
-            //this.$el.html(this.template)
         },
         activeItem(li){
             $(li).addClass('active')
@@ -40,7 +27,8 @@
     }
     let model={
         data:{
-            songs:[]
+            songs:[],
+            selectedSongId:null
         },
         find(){
             var query = new AV.Query('Song');
@@ -59,13 +47,7 @@
             this.view.init()
             this.getAllSongs()
             this.bindEvents()
-            window.eventHub.on('create',(data)=>{
-                this.model.data.songs.push(data)
-                this.view.render(this.model.data)
-            })
-            window.eventHub.on('new',()=>{
-                this.view.$el.find('li').removeClass('active')
-            })
+            this.bindEventHub()
         },
         getAllSongs(){
             return this.model.find().then(()=>{
@@ -74,10 +56,30 @@
                 console.log(this.model.data)
             })
         },
+        bindEventHub(){
+            window.eventHub.on('create',(data)=>{
+                this.model.data.songs.push(data)
+                this.view.render(this.model.data)
+            })
+            window.eventHub.on('new',()=>{
+                this.view.$el.find('li').removeClass('active')
+            })
+            window.eventHub.on('update',(song)=>{
+                let songs=this.model.data.songs
+                for(var i=0;i<songs.length;i++){
+                    if(songs[i].id===song.id){
+                        Object.assign(songs[i],song)
+                    }
+                }
+                this.view.render(this.model.data)
+            })
+        },
         bindEvents(){
             this.view.$el.on('click','li',(e)=>{
                 this.view.activeItem(e.currentTarget)
                 let songId=e.currentTarget.getAttribute('data-song-id')
+                this.model.data.selectedSongId=songId
+                this.view.render(this.model.data)
                 let songs=this.model.data.songs
                 for(var i=0;i<songs.length;i++){
                     if(songs[i].id===songId){
