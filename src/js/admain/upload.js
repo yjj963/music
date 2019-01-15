@@ -34,7 +34,7 @@
                     },
                     'UploadProgress': function(up, file) {
                         // 每个文件上传时,处理相关的事情
-                        uploadStatus.textContent = '上传中'
+                        window.eventHub.emit('beforeload')
                     },
                     'FileUploaded': function(up, file, info) {
                         // 每个文件上传成功后,处理相关的事情
@@ -52,6 +52,7 @@
                              'link':sourceLink,
                              'name':res.key
                          })
+                         window.eventHub.emit('afterload')
                     },
                     'Error': function(up, err, errTip) {
                         //上传出错时,处理相关的事情
