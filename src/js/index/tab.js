@@ -1,11 +1,21 @@
-!function(){
-    var $nav=$('.siteNav li')
-    for(var i=0;i<$nav.length;i++){
-        var li=$nav[i]
-        $(li).on('click',function(e){
-            var idx=$(this).index()
-            $(this).addClass('active').siblings().removeClass('active')
-            $('.tabContent>li').eq(idx).addClass('active').siblings().removeClass('active')
-        })
+{
+    let view={
+        el:'#tabs',
+        init(){
+            this.$el=$(this.el)
+        }
     }
-}();
+    let model={}
+    let controller={
+        init(view,model){
+            this.view=view
+            this.view.init()
+            this.view.$el.on('click','.tabs-nav>li',(e)=>{
+                $(e.currentTarget).addClass('active')
+                    .siblings().removeClass('active')
+            })
+            this.model=model
+        }
+    }
+    controller.init(view,model)
+}
