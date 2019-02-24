@@ -1,0 +1,123 @@
+*{margin: 0;padding: 0;}
+*{box-sizing: border-box;}
+*::before{box-sizing: border-box;}
+*::after{box-sizing: border-box;}
+a{color: inherit;text-decoration: none;}
+ul,ol li{list-style: none;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+body{
+    font-size: 15px;
+    background: white;
+}
+header.topbar{
+    width: 100%;
+    padding: 4.5vw 2.5vw;
+    background-color: #D43C33;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar svg.logo{
+    width: 38vw;
+}
+.topbar .download{
+    color: white;
+    display: block;
+    border:1px solid #fff;
+    border-radius: 4.25vw;
+    height: 7.5vw;
+    line-height: 7.5vw;
+    padding: 0 .5em;
+}
+nav{
+    border-bottom: 1px solid #ccc;
+}
+nav ul{
+    display: flex;
+    text-align: center;
+    font-size: 1.1em;
+}
+nav ul li{
+    flex: 1;
+}
+nav>ul>li>span{
+    position: relative;
+    display: inline-block;
+    padding: 3.9vw 0 1.9vw 0;
+}
+nav>ul>li.active>span{color: #D33A31;}
+nav>ul>li.active>span::before{
+    content:"";
+    border-bottom: 2px solid #D33A31; 
+    position: absolute;
+    bottom: 0;
+    left: -2vw;
+    right: -2vw;
+}
+nav ul li a{
+    cursor: pointer;
+    padding: 10px 0;
+    background: red;
+}
+nav ul li a:hover{
+    position: absolute;
+    bottom: 0;
+    border-bottom: 2px solid #D33A31;
+    left: 5vw;
+    right: 5vw;
+}
+ol.tabContent>li{display: none}
+ol.tabContent>li.active{display: block}
+ol.tabContent>li>section.playlists{
+    margin-top: 5.5vw;
+}
+ol.tabContent>li>section>h2{
+    margin: 4vw 0;
+    border-left: 2px solid #D33A31;
+    padding-left: 2.6vw;
+    font-size: 4.53vw;
+}
+section.playlists>ul{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 0.93em;
+}
+section.playlists>ul>li{
+    width: 32.5%;
+    margin-bottom: 4vw;
+}
+section.playlists>ul>li>img{
+    width: 100%;
+}
+section.lastestMusic>p{
+    text-align: center;
+}
+section.art>.logo{
+    text-align: center;
+}
+section.art>.logo>svg{
+    width: 61.7vw;
+}
+section.art>.openApp{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 81.3vw;
+    border: 1px solid #D33A31;
+    border-radius: 5.3vw;
+    color: #D33A31;
+    padding: 1vw 0;
+    line-height: 8.6vw;
+    margin-top: 3vw;
+    margin-bottom: 1vw;
+    font-size: 4.3vw;
+}
+section.art>.copyright{
+    color: #888;
+    font-size: 3.2vw;
+    text-align: center;
+    transform: scale(.75);
+}
