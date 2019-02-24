@@ -16,13 +16,13 @@
     </header>
     <nav id="tabs" class="siteNav">
         <ul class="tabs-nav">
-            <li class="active"><span>推荐音乐</span></li>
-            <li><span>热歌榜</span></li>
-            <li><span>搜索</span></li>
+            <li class="active" data-tab-name="page-1"><span>推荐音乐</span></li>
+            <li data-tab-name="page-2"><span>热歌榜</span></li>
+            <li data-tab-name="page-3"><span>搜索</span></li>
         </ul>
     </nav>
     <ol class="tabContent">
-        <li class="active">
+        <li id="page-1" class="active">
             <section class="playlists">
                 <h2>推荐歌单</h2>
                 <ul>
@@ -70,10 +70,10 @@
                 <div class="copyright">网易公司版权所有©1997-2017 杭州乐读科技有限公司运营</div>
             </section>
         </li>
-        <li>
+        <li id="page-2">
             <img src="./img/loading.gif" alt="">
         </li>
-        <li>
+        <li id="page-3">
             <input type="text">
         </li>
     </ol>
@@ -82,5 +82,8 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../vendors/event-hub.js"></script>
     <script src="./js/index/tab.js"></script>
+    <script src="./js/index/page-1.js"></script>
+    <script src="./js/index/page-2.js"></script>
+    <script src="./js/index/page-3.js"></script>
 </body>
 </html>

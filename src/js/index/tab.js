@@ -11,8 +11,11 @@
             this.view=view
             this.view.init()
             this.view.$el.on('click','.tabs-nav>li',(e)=>{
-                $(e.currentTarget).addClass('active')
+                let $li=$(e.currentTarget)
+                $li.addClass('active')
                     .siblings().removeClass('active')
+                let pageName=$li.attr('data-tab-name') 
+                window.eventHub.emit('selectTab',pageName)
             })
             this.model=model
         }
