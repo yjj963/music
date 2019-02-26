@@ -95,6 +95,16 @@ section.playlists>ul>li>img{
 section.lastestMusic>p{
     text-align: center;
 }
+section.lastestMusic>ol>li{
+    margin-left: 10px;
+    padding-bottom: 6px;
+    padding-top: 5px;
+    border-bottom: 1px solid #E2E2E3;
+}
+section.lastestMusic>ol>li>p{
+    color: #888;
+    font-size: 12px;
+}
 section.art>.logo{
     text-align: center;
 }
