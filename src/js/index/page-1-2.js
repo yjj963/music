@@ -10,7 +10,7 @@
                 </svg>
                 {{singer}}
             </p>
-            <a class='playButton'>
+            <a class='playButton' href="./song.html?id={{id}}">
                 <svg class="icon icon-play">
                     <use xlink:href="#icon-play"></use>
                 </svg>
@@ -24,7 +24,8 @@
             let songs=data.songs
             songs.map((song)=>{
                 let $li=this.template.replace('{{name}}',song.name)
-                .replace('{{singer}}',song.singer)                
+                .replace('{{singer}}',song.singer) 
+                .replace('{{id}}',song.id)                
                 this.$el.find('ol.lastestMusicList').append($li)
             })
         }
