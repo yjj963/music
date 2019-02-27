@@ -9,6 +9,12 @@ body{
     font-size: 15px;
     background: white;
 }
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
 header.topbar{
     width: 100%;
     padding: 4.5vw 2.5vw;
@@ -100,10 +106,23 @@ section.lastestMusic>ol>li{
     padding-bottom: 6px;
     padding-top: 5px;
     border-bottom: 1px solid #E2E2E3;
+    position: relative;
 }
 section.lastestMusic>ol>li>p{
     color: #888;
     font-size: 12px;
+}
+section.lastestMusic>ol>li>a.playButton{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+section.lastestMusic>ol>li>a.playButton>.icon-play{
+    width: 22px;
+    height: 22px;
+    fill: #aaa;
+    vertical-align: middle;
 }
 section.art>.logo{
     text-align: center;
