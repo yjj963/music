@@ -1,29 +1,55 @@
 {
-    let view={}
+    let view={
+        el:"#song",
+        template:`
+        <audio src="{{link}}"></audio>
+        <div>
+            <button class="play">播放</button>
+            <button class="pause">暂停</button>
+        </div>
+        `,
+        init(){
+            this.$el=$(this.el)
+        },
+        render(song){
+            $(this.el).html(this.template.replace("{{link}}",song.link))
+        },
+        play(){
+            let audio=this.$el.find("audio")[0]
+            audio.play()
+        },
+        pause(){
+            let audio=this.$el.find("audio")[0]
+            audio.pause()
+        }
+    }
     let model={
         data:{
-            id:'',
-            name:'',
-            singer:'',
-            url:''
+            songs:{
+                id:'',
+                name:'',
+                singer:'',
+                link:''
+            }
         },
-        setId(id){
-            this.data.id=id
-        },
-        get(){
+        get(id){
             var query=new AV.Query('Song')
-            query.get(this.data.id).then((song)=>{
+            return query.get(id).then((song)=>{
                 console.log(song)
+                return {id:song.id,...song.attributes}
             })
         }
     }
     let controller={
         init(view,model){
             this.view=view
+            this.view.init()
             this.model=model
             let id=this.getSongId()
-            this.model.setId(id)
-            this.model.get()
+            this.model.get(id).then((song)=>{
+                this.view.render(song)
+            })
+            this.bindEvent()
         },
         getSongId(){
             let search=window.location.search
@@ -42,6 +68,14 @@
                 }
             }
             return id
+        },
+        bindEvent(){
+            this.view.$el.on('click','.play',()=>{
+                this.view.play()
+            })
+            this.view.$el.on('click','.pause',()=>{
+                this.view.pause()
+            })
         }
     }
     controller.init(view,model)
