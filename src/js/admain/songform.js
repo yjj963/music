@@ -19,14 +19,23 @@
                 <input type="text" name='link' value="--link--">
             </div>
             <div class="row">
+                <label>封面</label>
+                <input type="text" name='cover' value="--cover--">
+            </div>
+            <div class="row">
+                <label>歌词</label>
+                <textarea name="lyrics" cols="30" rows="10">--lyrics--</textarea>
+            </div>
+            <div class="row">
                 <button type='submit'>保存</button>
             </div>
         </form>
         <div id="uploadStatus"></div>
         `,
         render(data){
-            let placeholder=['name','singer','link']
+            let placeholder=['name','singer','link','cover','lyrics']
             let html=this.template
+            console.log(data)
             placeholder.map((string)=>{
                 html=html.replace(`--${string}--`,data[string]||'')
             })
@@ -50,6 +59,8 @@
             song.set('name',data.name)
             song.set('singer',data.singer)
             song.set('link',data.link)
+            song.set('cover',data.cover)
+            song.set('lyrics',data.lyrics)
             return song.save().then((newSong)=> {
                 let {id,attributes}=newSong
                 Object.assign(this.data,{
@@ -64,6 +75,8 @@
             song.set('name', data.name);
             song.set('singer', data.singer);
             song.set('link', data.link);
+            song.set('cover',data.cover)
+            song.set('lyrics',data.lyrics)
             return song.save().then((response)=>{
                 Object.assign(this.data, data)
                 return response
@@ -92,7 +105,7 @@
             })
             window.eventHub.on('new',(data)=>{
                 if(this.model.data.id){
-                    this.model.data={name:'',singer:'',link:'',id:''}
+                    this.model.data={name:'',singer:'',link:'',id:'',cover:'',lyrics:''}
                 }else{
                     Object.assign(this.model.data,data)
                 }
@@ -103,10 +116,10 @@
             $(this.view.el).on('submit','form',(e)=>{
                 e.preventDefault()
                 //收集数据记录到model上并保存到数据库
-                let need=['name','singer','link']
+                let need=['name','singer','link','cover','lyrics']
                 let data={}
                 need.map((string)=>{
-                    data[string]=this.view.$el.find(`input[name="${string}"]`).val()
+                    data[string]=this.view.$el.find(`[name="${string}"]`).val()
                 })
                 if(this.model.data.id){
                     this.model.update(data)
